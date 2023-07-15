@@ -9,9 +9,10 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import sys
 from pathlib import Path
 
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,18 +26,34 @@ SECRET_KEY = 'django-insecure--j7m#%hyz&ocrsp26$onn67wwqwrg+jqw_upuf9s1yo507e(*8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1'
+]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    #default
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #added
+    'bootstrap5',
+    'future',
+    'fixture_magic',
+
+    # Google Authentication
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -116,8 +133,93 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+#STATIC_URL = '/static/'
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ACCOUNT SETUP:
+
+
+# Google Authentication Settings
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
+
+# Password validation
+# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+#from old django project
+# LOGIN_REDIRECT_URL = 'scheduling_app:accountRedirects'
+# LOGOUT_REDIRECT_URL = 'scheduling_app:login'
+# LOGIN_URL = 'scheduling_app:login'
+
+# Additional configuration settings
+# SOCIALACCOUNT_QUERY_EMAIL = True
+# SOCIALACCOUNT_STORE_TOKENS = True
+# SOCIALACCOUNT_LOGIN_ON_GET = True
+# ACCOUNT_LOGOUT_ON_GET = True
+# ACCOUNT_UNIQUE_EMAIL = True
+# ACCOUNT_EMAIL_REQUIRED = True
+#AUTH_USER_MODEL = 'scheduling_app.User'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'django.project.b20@gmail.com'
+# EMAIL_HOST_PASSWORD = 'fyivwdcekmjuqfoe'
+# EMAIL_PORT = 587
+
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'APP': {
+#             "client_id": "46198671898-e4u3tjtru808tfp99vlnlv63m5dn04fu.apps.googleusercontent.com",
+#             "secret": "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",
+#             "key": "",
+#         },
+#         'SCOPE': [
+#             'profile',
+#             'email',
+#         ],
+#         'AUTH_PARAMS': {
+#             'access_type': 'online',
+#         }
+#     }
+# }
+
+
+
+
+# try:
+#     if 'HEROKU' in os.environ:
+#         import django_heroku
+#         django_heroku.settings(locals())
+#         SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+#         SECURE_HSTS_SECONDS = 180
+#         SECURE_SSL_REDIRECT = True
+
+#         SESSION_COOKIE_SECURE = True
+#         CSRF_COOKIE_SECURE = True
+#         DEBUG = False
+# except ImportError:
+#     found = False
