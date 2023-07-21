@@ -2,11 +2,11 @@ import datetime
 
 from django.shortcuts import render, get_object_or_404
 
-from scheduling_app.authentication_decorators import account_type_required
-from scheduling_app.models import StudentSchedule, Course
-from scheduling_app.sis_api import By, Semester
-from scheduling_app.sis_api.populate_database import fill_database_by_query
-from scheduling_app.views.utilities import create_schedule_if_unique, get_user_schedules
+from KCCIC.authentication_decorators import account_type_required
+from KCCIC.models import StudentSchedule, Course
+from KCCIC.sis_api import By, Semester
+from KCCIC.sis_api.populate_database import fill_database_by_query
+from KCCIC.views.utilities import create_schedule_if_unique, get_user_schedules
 
 
 def course_view(request, course_pk):
@@ -14,7 +14,7 @@ def course_view(request, course_pk):
         'course': get_object_or_404(Course, pk=course_pk),
         'midnight': datetime.time(0, 0, 0)
     }
-    return render(request, 'scheduling_app/course-detail.html', context)
+    return render(request, 'KCCIC/course-detail.html', context)
 
 @account_type_required()
 def course_table_view(request):
@@ -31,7 +31,7 @@ def course_table_view(request):
 
 
 def course_table_base_page(request):
-    return render(request, 'scheduling_app/course-table.html', context=get_base_context(request))
+    return render(request, 'KCCIC/course-table.html', context=get_base_context(request))
 
 
 def get_base_context(request):
@@ -70,13 +70,13 @@ def course_table_add_course_to_schedule_form(form, request):
             'body': f'"{course.course_identifier.course_description}" was successfully added to "{student_schedule.name}"',
             'type': 'success'
         }
-    return render(request, 'scheduling_app/course-table.html', context=context)
+    return render(request, 'KCCIC/course-table.html', context=context)
 
 
 def course_table_create_schedule_form(form, request):
     context = get_base_context(request)
     context['message'] = create_schedule_if_unique(request.user, form['schedule_name'])
-    return render(request, 'scheduling_app/course-table.html', context=context)
+    return render(request, 'KCCIC/course-table.html', context=context)
 
 def get_database_filters(form):
     database_filter = {}
@@ -131,4 +131,4 @@ def course_table_filter_form(request):
                 'body': 'Please select at least one filter',
                 'type': 'error'
         }
-    return render(request, 'scheduling_app/course-table.html', context=context)
+    return render(request, 'KCCIC/course-table.html', context=context)

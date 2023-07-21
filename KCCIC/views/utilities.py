@@ -1,4 +1,4 @@
-from scheduling_app.models import Advisor, Student, StudentSchedule
+from KCCIC.models import Advisor, Student, StudentSchedule
 
 
 def get_advisor_or_none(user):

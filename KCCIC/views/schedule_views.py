@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 
-from scheduling_app.authentication_decorators import student_required, advisor_required
-from scheduling_app.models import StudentSchedule
-from scheduling_app.views.utilities import get_pending_schedules_or_none, create_schedule_if_unique, get_user_schedules
+from KCCIC.authentication_decorators import student_required, advisor_required
+from KCCIC.models import StudentSchedule
+from KCCIC.views.utilities import get_pending_schedules_or_none, create_schedule_if_unique, get_user_schedules
 
 
 def home_view(request):
-    return render(request, 'scheduling_app/about.html')
+    return render(request, 'KCCIC/about.html')
 
 
 def number_status(schedules, status):
@@ -45,7 +45,7 @@ def student_schedules_view(request):
     context['num_pending'] = number_status(schedules, StudentSchedule.Status.PENDING)
     context['num_rejected'] = number_status(schedules, StudentSchedule.Status.REJECTED)
     context['num_approved'] = number_status(schedules, StudentSchedule.Status.APPROVED)
-    return render(request, 'scheduling_app/student-schedule-table.html', context=context)
+    return render(request, 'KCCIC/student-schedule-table.html', context=context)
 
 
 @advisor_required()
@@ -64,4 +64,4 @@ def advisor_schedules_view(request):
     context = {
         'schedules': get_pending_schedules_or_none()
     }
-    return render(request, 'scheduling_app/advisor-schedule-table.html', context)
+    return render(request, 'KCCIC/advisor-schedule-table.html', context)

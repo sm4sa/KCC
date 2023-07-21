@@ -1,11 +1,11 @@
 from django.shortcuts import render
 
-from scheduling_app.authentication_decorators import unselected_account_type_required
-from scheduling_app.views.utilities import get_advisor_or_none, get_student_or_none
-from scheduling_app.authentication_decorators import is_student, is_advisor
-from scheduling_app.forms import UserFormModel, StudentFormModel, AdvisorFormModel
-from scheduling_app.models import Advisor, Student
-from scheduling_app.views import student_schedules_view, advisor_schedules_view
+from KCCIC.authentication_decorators import unselected_account_type_required
+from KCCIC.views.utilities import get_advisor_or_none, get_student_or_none
+from KCCIC.authentication_decorators import is_student, is_advisor
+from KCCIC.forms import UserFormModel, StudentFormModel, AdvisorFormModel
+from KCCIC.models import Advisor, Student
+from KCCIC.views import student_schedules_view, advisor_schedules_view
 
 
 def accounts_redirect_view(request):
@@ -17,7 +17,7 @@ def accounts_redirect_view(request):
     elif user.is_authenticated and not is_student(user) and not is_advisor(user):
         return select_account_view(request)
     else:
-        return render(request, 'scheduling_app/login.html')
+        return render(request, 'KCCIC/login.html')
 
 
 @unselected_account_type_required()
@@ -38,7 +38,7 @@ def select_account_view(request):
             'student_form': student_form,
             'advisor_form': advisor_form,
         }
-        return render(request, 'scheduling_app/login-select-account.html', context)
+        return render(request, 'KCCIC/login-select-account.html', context)
 
 
 def update_account(request, account_type, user):
