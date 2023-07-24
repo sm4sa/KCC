@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  {% include 'KCCIC/common/navbar.html' %}
+  {% include 'KCCIC/templates/KCCIC/common/navbar.html' %}
 
   <div class="text-center container-fluid h-100">
     <div class="row h-100">
@@ -22,22 +22,28 @@
       <div class="col-1 sidenav"></div>
 
       <div class="col-10 text-start mt-3">
-        <h1>Welcome to KCCIC's Website</h1>
-        <p>This website was designed and created to enhance members' experience and make administrative tasks more efficient.</p>
+        <h1 align="center">Welcome to KCCIC</h1>
+        <div style="text-align:center;">
+        <img src="https://lh3.googleusercontent.com/p/AF1QipPLq4tYzMxvY1nyu0ngNdr6TeH105756IWwaUbA=s1360-w1360-h1020" alt="Our Beautiful Church!" style="width:600px;height:450px;">
+        </div>
+        <p style="text-align:center;">This website was designed and created to enhance our college members' experience and make administrative tasks more efficient.</p>
         <hr>
+        <h2>About our College Community:</h2>
+        <p>List Goals/Mission statement here, this year's theme, worship times, etc <br>
+        <a href="{% url 'KCCIC:about' %}">Contact</a> information listed with Leader and Office profiles.
+        </p>
         <h3>Website Features:</h3>
-        <p>In order to register for classes at UVA, a student must have their advisor sign off on their schedule.
-          This app allows students to view courses for the upcoming semester, create a schedule, and then send it to an advisor for approval.
+        <p>
             <ul>
-              <li>Students must be able to search classes by course mnemonic, course number, and course name.</li>
-              <li>Students must be able to add courses to a schedule, which will be saved with the student’s account.</li>
-              <li>A schedule cannot have courses that have a time conflict.</li>
-              <li>Students must be able to “submit” the schedule to an advisor to approve the schedule.</li>
-              <li>An advisor should see all schedules available for review upon login.</li>
-              <li>Any advisor should be able to approve or reject any schedule.</li>
-              <li>When a schedule is approved or rejected, the student should be able to see this when they login.</li>
+              <li>Viewing announcements</li>
+              <li>Signing up for and viewing rides.</li>
+              <li>Viewing a calendar with events</li>
+              <li>Officer/Leader Profiles</li>
+              <li>Team Pages</li>
+              <li>Photo Gallery</li>
+              <li>Daily QT's and links to alternative QT's</li>
           </ul>
-        <a href="{% url 'KCCIC:login' %}">Login</a> to start.
+        <a href="{% url 'KCCIC:about' %}">Login</a> to start.
       </div>
 
       <div class="col-1 sidenav"></div>
@@ -45,6 +51,6 @@
     </div>
   </div>
 
-  {% include 'KCCIC/common/footer.html' %}
+  {% include 'KCCIC/templates/KCCIC/common/footer.html' %}
 </body>
 </html>
