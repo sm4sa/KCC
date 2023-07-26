@@ -16,8 +16,8 @@
 <body>
   {% include 'KCCIC/templates/KCCIC/common/navbar.html' %}
 
-  <div class="text-center container-fluid h-100">
-    <div class="row h-100">
+  <div class="text-center container-fluid">
+    <div class="row">
 
       <div class="col-1 sidenav"></div>
 
@@ -29,8 +29,16 @@
         <p style="text-align:center;">This website was designed and created to enhance our college members' experience and make administrative tasks more efficient.</p>
         <hr>
         <h2>About our College Community:</h2>
-        <p>List Goals/Mission statement here, this year's theme, worship times, etc <br>
-        <a href="{% url 'KCCIC:about' %}">Contact</a> information listed with Leader and Office profiles.
+        <p>We are a Christian college fellowship group serving at Korean Community Church in Charlottesville (KCCIC). 
+          Our logo is named H.I.M, which is an acronym for “Here I Am” from the Bible passage Isaiah 6:8: “Then I heard the voice of the Lord saying, “Whom shall I send? And who will go for us?” And I said, “Here am I. Send me!” <br>
+          <br>
+          We meet every Friday at 7PM and Sunday at 11AM to have praise, worship and fellowship. 
+          Other religious activities include Bible study, discipleship training and Friday small groups. 
+          Some of our group events include Big-Little buddies, Boy/Girl Lock-in, Fall retreat, (Spring) joint retreat, Praise/Alumni night, and Senior banquet. <br>
+          <br>
+          This year, our theme is Ephesians 4. <br>
+          If you have any questions, please feel free to 
+          <a href="{% url 'KCCIC:about' %}">contact</a> us using the information listed with Leader and Office profiles.
         </p>
         <h3>Website Features:</h3>
         <p>
@@ -50,7 +58,7 @@
 
     </div>
   </div>
-
   {% include 'KCCIC/templates/KCCIC/common/footer.html' %}
+  
 </body>
 </html>
